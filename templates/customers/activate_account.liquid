@@ -1,0 +1,26 @@
+<div class="page-header">
+  <div class="container">
+    <h1>Activate account</h1>
+    <p>Choose a password to activate your account.</p>
+  </div>
+</div>
+
+<section class="container section" style="max-width:460px;">
+  {% form 'activate_customer_password' %}
+    {% if form.errors %}
+      <div style="background:var(--color-blush); padding:14px 18px; border-radius:var(--radius-md); margin-bottom:20px;">{{ form.errors | default_errors }}</div>
+    {% endif %}
+    <div style="display:grid; gap:14px;">
+      <label>
+        <span style="display:block; font-weight:600; margin-bottom:6px; font-size:0.9rem;">Password</span>
+        <input type="password" name="customer[password]" required style="width:100%; padding:14px 18px; border:1px solid var(--color-border); border-radius:var(--radius-pill); font:inherit;">
+      </label>
+      <label>
+        <span style="display:block; font-weight:600; margin-bottom:6px; font-size:0.9rem;">Confirm password</span>
+        <input type="password" name="customer[password_confirmation]" required style="width:100%; padding:14px 18px; border:1px solid var(--color-border); border-radius:var(--radius-pill); font:inherit;">
+      </label>
+      <button type="submit" class="btn btn--primary btn--full">Activate account</button>
+      <button type="submit" name="decline" class="btn btn--ghost btn--full">Decline invitation</button>
+    </div>
+  {% endform %}
+</section>

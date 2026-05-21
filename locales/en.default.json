@@ -1,0 +1,37 @@
+{
+  "general": {
+    "accessibility": {
+      "skip_to_text": "Skip to content"
+    },
+    "search": {
+      "title": "Search",
+      "placeholder": "Search products, ingredients, rituals…"
+    },
+    "newsletter_form": {
+      "newsletter_email": "Email address",
+      "submit": "Subscribe",
+      "confirmation": "Thank you for subscribing"
+    },
+    "cart": {
+      "title": "Your Cart",
+      "empty": "Your cart is empty",
+      "subtotal": "Subtotal",
+      "checkout": "Checkout",
+      "view_cart": "View cart",
+      "continue_shopping": "Continue shopping"
+    }
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Add to Cart",
+      "sold_out": "Sold Out",
+      "quantity": "Quantity",
+      "unit_price_label": "Unit price",
+      "from_price_html": "From {{ price }}",
+      "on_sale": "Sale"
+    }
+  },
+  "accessibility": {
+    "skip_to_text": "Skip to content"
+  }
+}

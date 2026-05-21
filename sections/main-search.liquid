@@ -1,0 +1,33 @@
+<div class="page-header">
+  <div class="container">
+    <h1>Search</h1>
+    <form action="{{ routes.search_url }}" method="get" role="search" style="max-width:520px; margin: 0 auto;">
+      <input type="search" name="q" value="{{ search.terms | escape }}" placeholder="Search for products, ingredients, rituals…" style="width:100%; padding: 14px 22px; border-radius: var(--radius-pill); border:1px solid var(--color-border); font:inherit;">
+    </form>
+  </div>
+</div>
+
+<section class="container section">
+  {% if search.performed %}
+    {% if search.results_count > 0 %}
+      <p style="text-align:center; margin-bottom: 36px;">{{ search.results_count }} result{% if search.results_count != 1 %}s{% endif %} for "{{ search.terms | escape }}"</p>
+      <div class="product-grid">
+        {% for item in search.results %}
+          {% if item.object_type == 'product' %}
+            {% render 'product-card', product: item %}
+          {% endif %}
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="empty-state">
+        <h2>No results found</h2>
+        <p>Try a different keyword or browse our collections.</p>
+        <a href="{{ routes.all_products_collection_url }}" class="btn btn--primary mt-4">Shop all products</a>
+      </div>
+    {% endif %}
+  {% endif %}
+</section>
+
+{% schema %}
+{ "name": "Search", "settings": [] }
+{% endschema %}

@@ -1,0 +1,43 @@
+<section class="section">
+  <div class="container about-strip" data-reveal>
+    <div class="about-strip__media">
+      {% if section.settings.image != blank %}
+        {{ section.settings.image | image_url: width: 1000 | image_tag: alt: 'Janma founders' }}
+      {% else %}
+        <svg viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+          <rect width="600" height="600" fill="#F4DCD0"/>
+          <circle cx="300" cy="250" r="160" fill="#FBF7F2"/>
+          <path d="M120 460 Q300 320 480 460 Q480 600 300 600 Q120 600 120 460 Z" fill="#8FA68E" opacity="0.6"/>
+          <text x="300" y="270" text-anchor="middle" font-family="Fraunces, serif" font-size="44" fill="#2B2118" font-style="italic">Janma</text>
+        </svg>
+      {% endif %}
+    </div>
+    <div class="about-strip__content">
+      <span class="eyebrow">{{ section.settings.eyebrow | default: 'Where love meets Ayurveda' }}</span>
+      <h2>{{ section.settings.heading | default: 'A mother\'s instinct.<br>A scientist\'s precision.' }}</h2>
+      <p>{{ section.settings.body | default: 'Janma was born from real-life moments -- tiny, precious, real-life events that led to a brand centred on purity, love, and safety. Every formulation is a ritual of care, connecting age-old Ayurvedic wisdom with the needs of modern parenting.' }}</p>
+      <blockquote>{{ section.settings.quote | default: '"Our formulations offer a gentle embrace to support every beautiful milestone in your baby\'s journey."' }}</blockquote>
+      <p class="about-strip__cite">{{ section.settings.cite | default: 'Nidhi Kale & Ridhee Deshmukh -- Founders, Janma Care' }}</p>
+      {% if section.settings.cta_label != blank %}
+        <a href="{{ section.settings.cta_link | default: '/pages/about-us' }}" class="btn btn--outline mt-4">{{ section.settings.cta_label }}</a>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "About strip",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow" },
+    { "type": "richtext", "id": "heading", "label": "Heading" },
+    { "type": "richtext", "id": "body", "label": "Body" },
+    { "type": "richtext", "id": "quote", "label": "Quote" },
+    { "type": "text", "id": "cite", "label": "Citation" },
+    { "type": "image_picker", "id": "image", "label": "Image" },
+    { "type": "text", "id": "cta_label", "label": "CTA label", "default": "Read our story" },
+    { "type": "url",  "id": "cta_link",  "label": "CTA link" }
+  ],
+  "presets": [{ "name": "About strip" }]
+}
+{% endschema %}

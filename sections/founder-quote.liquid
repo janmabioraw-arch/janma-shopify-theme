@@ -1,0 +1,17 @@
+<section class="founder-quote">
+  <div class="container" data-reveal>
+    <blockquote>{{ section.settings.quote | default: 'Our formulations are rituals of care -- connecting age-old Ayurvedic tradition with the needs of modern parenting. Safe, effective, and deeply comforting, they offer a gentle embrace to support every beautiful milestone in your baby\'s journey.' }}</blockquote>
+    <p class="founder-quote__cite">{{ section.settings.cite | default: 'Nidhi Kale & Ridhee Deshmukh -- Founders & Directors, Janma Care' }}</p>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Founder quote",
+  "settings": [
+    { "type": "richtext", "id": "quote", "label": "Quote" },
+    { "type": "text", "id": "cite", "label": "Citation" }
+  ],
+  "presets": [{ "name": "Founder quote" }]
+}
+{% endschema %}

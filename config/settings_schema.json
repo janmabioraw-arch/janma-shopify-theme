@@ -1,0 +1,41 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Janma",
+    "theme_version": "1.0.0",
+    "theme_author": "Janma Care",
+    "theme_documentation_url": "https://janma.in",
+    "theme_support_email": "hello@janma.in"
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      { "type": "color", "id": "color_background", "label": "Page background", "default": "#FBF7F2" },
+      { "type": "color", "id": "color_text", "label": "Body text", "default": "#2B2118" },
+      { "type": "color", "id": "color_accent", "label": "Accent (terracotta)", "default": "#C97B5C" },
+      { "type": "color", "id": "color_sage", "label": "Sage", "default": "#8FA68E" },
+      { "type": "color", "id": "color_gold", "label": "Gold", "default": "#C9A961" }
+    ]
+  },
+  {
+    "name": "Typography",
+    "settings": [
+      { "type": "header", "content": "Headings" },
+      { "type": "font_picker", "id": "type_header_font", "label": "Heading font", "default": "assistant_n4" },
+      { "type": "header", "content": "Body" },
+      { "type": "font_picker", "id": "type_body_font", "label": "Body font", "default": "assistant_n4" }
+    ]
+  },
+  {
+    "name": "Brand",
+    "settings": [
+      { "type": "image_picker", "id": "favicon", "label": "Favicon" }
+    ]
+  },
+  {
+    "name": "Layout",
+    "settings": [
+      { "type": "range", "id": "page_width", "min": 1200, "max": 1600, "step": 20, "default": 1240, "unit": "px", "label": "Max page width" }
+    ]
+  }
+]

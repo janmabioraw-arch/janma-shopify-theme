@@ -1,0 +1,25 @@
+<section class="container section" style="max-width:720px; text-align:center;">
+  <span class="eyebrow">Gift card</span>
+  <h1>A little Janma love</h1>
+  <p>Worth {{ gift_card.initial_value | money }} -- share gentle skincare with someone you love.</p>
+
+  <div style="margin: 32px auto; padding: 36px; background: linear-gradient(135deg, #F4DCD0, #F0E6D6); border-radius: var(--radius-lg); box-shadow: var(--shadow-card);">
+    <div style="font-family: var(--font-heading); font-size: 1.4rem; color: var(--color-text); font-style: italic; margin-bottom: 12px;">Janma</div>
+    <div style="font-size: 2.4rem; font-weight: 600;">{{ gift_card.balance | money }}</div>
+    <div style="margin-top: 18px; font-family: monospace; letter-spacing: 0.2em; background: rgba(255,255,255,0.6); padding: 10px 14px; border-radius: var(--radius-pill);">
+      {{ gift_card.code | format_code }}
+    </div>
+    {% if gift_card.expires_on %}
+      <p style="margin-top: 16px; font-size: 0.85rem; color: var(--color-text-muted);">Expires {{ gift_card.expires_on | date: '%B %d, %Y' }}</p>
+    {% endif %}
+  </div>
+
+  <div style="display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
+    <a href="{{ routes.all_products_collection_url }}" class="btn btn--primary">Shop now</a>
+    <button type="button" class="btn btn--outline" onclick="window.print()">Print card</button>
+  </div>
+</section>
+
+{% schema %}
+{ "name": "Gift card", "settings": [] }
+{% endschema %}

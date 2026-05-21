@@ -1,0 +1,111 @@
+<div class="trust-strip">
+  <div class="trust-marquee">
+    {% for block in section.blocks %}
+      <span class="trust-strip__item" {{ block.shopify_attributes }}>{{ block.settings.text }}</span>
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Trust strip",
+  "max_blocks": 8,
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Hypoallergenic"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Trust strip",
+      "blocks": [
+        {
+          "type": "item",
+          "settings": {
+            "text": "Hypoallergenic"
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "text": "Paraben-free"
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "text": "Sulphate-free"
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "text": "Clinically tested"
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "text": "PETA Certified"
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "text": "Made in India"
+          }
+        }
+      ]
+    }
+  ],
+  "default": {
+    "blocks": [
+      {
+        "type": "item",
+        "settings": {
+          "text": "Hypoallergenic"
+        }
+      },
+      {
+        "type": "item",
+        "settings": {
+          "text": "Paraben-free"
+        }
+      },
+      {
+        "type": "item",
+        "settings": {
+          "text": "Sulphate-free"
+        }
+      },
+      {
+        "type": "item",
+        "settings": {
+          "text": "Clinically tested"
+        }
+      },
+      {
+        "type": "item",
+        "settings": {
+          "text": "PETA Certified"
+        }
+      },
+      {
+        "type": "item",
+        "settings": {
+          "text": "Made in India"
+        }
+      }
+    ]
+  }
+}
+{% endschema %}

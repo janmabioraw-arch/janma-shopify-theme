@@ -1,0 +1,36 @@
+<div class="page-header">
+  <div class="container">
+    <h1>Create account</h1>
+    <p>Join the Janma family.</p>
+  </div>
+</div>
+
+<section class="container section" style="max-width:460px;">
+  {% form 'create_customer' %}
+    {% if form.errors %}
+      <div style="background:var(--color-blush); padding:14px 18px; border-radius:var(--radius-md); margin-bottom:20px;">
+        {{ form.errors | default_errors }}
+      </div>
+    {% endif %}
+    <div style="display:grid; gap:14px;">
+      <label>
+        <span style="display:block; font-weight:600; margin-bottom:6px; font-size:0.9rem;">First name</span>
+        <input type="text" name="customer[first_name]" required style="width:100%; padding:14px 18px; border:1px solid var(--color-border); border-radius:var(--radius-pill); font:inherit;">
+      </label>
+      <label>
+        <span style="display:block; font-weight:600; margin-bottom:6px; font-size:0.9rem;">Last name</span>
+        <input type="text" name="customer[last_name]" required style="width:100%; padding:14px 18px; border:1px solid var(--color-border); border-radius:var(--radius-pill); font:inherit;">
+      </label>
+      <label>
+        <span style="display:block; font-weight:600; margin-bottom:6px; font-size:0.9rem;">Email</span>
+        <input type="email" name="customer[email]" required style="width:100%; padding:14px 18px; border:1px solid var(--color-border); border-radius:var(--radius-pill); font:inherit;">
+      </label>
+      <label>
+        <span style="display:block; font-weight:600; margin-bottom:6px; font-size:0.9rem;">Password</span>
+        <input type="password" name="customer[password]" required style="width:100%; padding:14px 18px; border:1px solid var(--color-border); border-radius:var(--radius-pill); font:inherit;">
+      </label>
+      <button type="submit" class="btn btn--primary btn--full">Create account</button>
+      <p style="text-align:center; font-size:0.9rem; margin:0;">Already have an account? <a href="{{ routes.account_login_url }}">Sign in</a></p>
+    </div>
+  {% endform %}
+</section>

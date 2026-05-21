@@ -1,0 +1,117 @@
+<section class="container product-page" data-reveal>
+  <div class="product-gallery" data-gallery>
+    <div class="product-gallery__main" data-gallery-main>
+      {%- if product.featured_image != blank -%}
+        {{ product.featured_image | image_url: width: 1200 | image_tag: alt: product.title, loading: 'eager', class: 'product-gallery__img' }}
+      {%- else -%}
+        {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+      {%- endif -%}
+    </div>
+    {%- if product.images.size > 1 -%}
+      <div class="product-gallery__thumbs">
+        {%- for image in product.images limit: 6 -%}
+          <button type="button" data-gallery-thumb data-src="{{ image | image_url: width: 1200 }}" data-alt="{{ image.alt | escape }}" class="{% if forloop.first %}is-active{% endif %}">
+            {{ image | image_url: width: 200 | image_tag: alt: image.alt, loading: 'lazy' }}
+          </button>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+
+  <div class="product-info">
+    {%- if product.type != blank -%}
+      <span class="product-info__category">{{ product.type }}</span>
+    {%- endif -%}
+    <h1 class="product-info__title">{{ product.title }}</h1>
+
+    <div class="product-info__price-row">
+      <span class="product-info__price" data-variant-price>{{ product.selected_or_first_available_variant.price | money }}</span>
+      {%- if product.compare_at_price > product.price -%}
+        <span class="product-info__price product-info__price--compare">{{ product.compare_at_price | money }}</span>
+      {%- endif -%}
+      {%- if product.selected_or_first_available_variant.unit_price_measurement -%}
+        <span class="product-info__unit">{{ product.selected_or_first_available_variant.unit_price | money }} / {{ product.selected_or_first_available_variant.unit_price_measurement.reference_value }}{{ product.selected_or_first_available_variant.unit_price_measurement.reference_unit }}</span>
+      {%- endif -%}
+    </div>
+
+    <form action="{{ routes.cart_add_url }}" method="post" enctype="multipart/form-data" data-product-form>
+      <div class="product-info__variants" data-variant-picker>
+        {%- unless product.has_only_default_variant -%}
+          {%- for option in product.options_with_values -%}
+            <div class="variant-group">
+              <label class="variant-group__label">{{ option.name }}</label>
+              <div class="variant-options">
+                {%- for value in option.values -%}
+                  <label>
+                    <input type="radio" name="option{{ forloop.parentloop.index }}" value="{{ value | escape }}"{% if option.selected_value == value %} checked{% endif %}>
+                    <span>{{ value }}</span>
+                  </label>
+                {%- endfor -%}
+              </div>
+            </div>
+          {%- endfor -%}
+        {%- endunless -%}
+      </div>
+
+      <div class="product-info__quantity">
+        <label for="Quantity" style="font-weight:600;">Quantity</label>
+        <div class="qty-stepper" data-qty>
+          <button type="button" data-qty-step="-1" aria-label="Decrease">−</button>
+          <input id="Quantity" type="number" name="quantity" value="1" min="1">
+          <button type="button" data-qty-step="1" aria-label="Increase">+</button>
+        </div>
+      </div>
+
+      <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" data-variant-id>
+
+      <div class="product-info__buy">
+        <button type="submit" class="btn btn--primary btn--full magnetic" data-buy-button{% unless product.selected_or_first_available_variant.available %} disabled{% endunless %}>
+          <span class="btn__label">{% if product.selected_or_first_available_variant.available %}Add to Cart{% else %}Sold Out{% endif %}</span>
+        </button>
+      </div>
+    </form>
+
+    <script type="application/json" data-product-json>
+      {{ product | json }}
+    </script>
+
+    <ul class="product-info__perks">
+      <li>Toxin-free · Paraben-free · Sulphate-free</li>
+      <li>Dermatologically tested for sensitive skin</li>
+      <li>Free shipping in India on orders over Rs. 999</li>
+      <li>Made in India with international hygiene standards</li>
+    </ul>
+
+    <div class="accordion">
+      <details class="accordion__item" open>
+        <summary class="accordion__trigger">Description</summary>
+        <div class="accordion__panel">{{ product.description }}</div>
+      </details>
+      {%- if product.metafields.custom.ingredients != blank -%}
+        <details class="accordion__item">
+          <summary class="accordion__trigger">Ingredients</summary>
+          <div class="accordion__panel">{{ product.metafields.custom.ingredients }}</div>
+        </details>
+      {%- endif -%}
+      {%- if product.metafields.custom.how_to_use != blank -%}
+        <details class="accordion__item">
+          <summary class="accordion__trigger">How to use</summary>
+          <div class="accordion__panel">{{ product.metafields.custom.how_to_use }}</div>
+        </details>
+      {%- endif -%}
+      <details class="accordion__item">
+        <summary class="accordion__trigger">Shipping &amp; returns</summary>
+        <div class="accordion__panel">
+          <p>We ship across India in 3-5 business days. Returns accepted on unopened products within 7 days of delivery.</p>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product",
+  "settings": []
+}
+{% endschema %}

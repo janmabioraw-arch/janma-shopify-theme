@@ -1,0 +1,43 @@
+<div class="page-header">
+  <div class="container">
+    <p class="breadcrumbs"><a href="{{ routes.account_url }}">Account</a> / <span>{{ order.name }}</span></p>
+    <h1>{{ order.name }}</h1>
+    <p>Placed on {{ order.created_at | date: '%B %d, %Y' }}</p>
+  </div>
+</div>
+
+<section class="container section">
+  <div style="display:grid; grid-template-columns: 1fr 320px; gap:48px;">
+    <div>
+      <h2>Items</h2>
+      {% for line_item in order.line_items %}
+        <div class="cart-item">
+          <div class="cart-item__image">
+            {% if line_item.image %}{{ line_item.image | image_url: width: 240 | image_tag: alt: line_item.title }}{% endif %}
+          </div>
+          <div>
+            <h4 class="cart-item__title">{{ line_item.title }}</h4>
+            {% unless line_item.variant.title contains 'Default' %}
+              <p class="cart-item__variant">{{ line_item.variant.title }}</p>
+            {% endunless %}
+            <p style="margin:0; font-size:0.9rem;">Qty: {{ line_item.quantity }}</p>
+          </div>
+          <div style="text-align:right;"><strong>{{ line_item.final_line_price | money }}</strong></div>
+        </div>
+      {% endfor %}
+    </div>
+
+    <aside class="cart-summary">
+      <h3>Summary</h3>
+      <div class="cart-summary__row"><span>Subtotal</span><span>{{ order.line_items_subtotal_price | money }}</span></div>
+      <div class="cart-summary__row"><span>Shipping</span><span>{{ order.shipping_price | money }}</span></div>
+      <div class="cart-summary__row"><span>Tax</span><span>{{ order.tax_price | money }}</span></div>
+      <div class="cart-summary__row cart-summary__row--total"><span>Total</span><span>{{ order.total_price | money }}</span></div>
+
+      {% if order.shipping_address %}
+        <h4 style="margin-top:24px;">Shipping to</h4>
+        <p style="font-size:0.9rem;">{{ order.shipping_address | format_address }}</p>
+      {% endif %}
+    </aside>
+  </div>
+</section>

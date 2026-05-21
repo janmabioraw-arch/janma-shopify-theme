@@ -1,0 +1,27 @@
+<section class="section newsletter">
+  <div class="container" data-reveal>
+    {% if section.settings.eyebrow != blank %}<span class="eyebrow">{{ section.settings.eyebrow }}</span>{% endif %}
+    <h2>{{ section.settings.heading | default: 'Letters from the nest' }}</h2>
+    <p>{{ section.settings.subheading | default: 'Gentle care guides, ingredient stories, and exclusive launches -- once a month, never more.' }}</p>
+    {% form 'customer' %}
+      <input type="hidden" name="contact[tags]" value="newsletter">
+      <input type="email" name="contact[email]" placeholder="you@example.com" required>
+      <button type="submit" class="btn btn--primary magnetic">Subscribe</button>
+      {% if form.posted_successfully? %}
+        <p class="text-center mt-4" style="color:var(--color-sage-deep);">Thank you -- welcome to the Janma family.</p>
+      {% endif %}
+    {% endform %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Newsletter",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Stay close" },
+    { "type": "text", "id": "heading", "label": "Heading" },
+    { "type": "textarea", "id": "subheading", "label": "Subheading" }
+  ],
+  "presets": [{ "name": "Newsletter" }]
+}
+{% endschema %}

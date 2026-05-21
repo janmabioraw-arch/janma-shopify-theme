@@ -1,0 +1,157 @@
+<section class="section certifications">
+  <div class="container">
+    <div class="section-heading" data-reveal>
+      {% if section.settings.eyebrow != blank %}<span class="eyebrow">{{ section.settings.eyebrow }}</span>{% endif %}
+      <h2>{{ section.settings.heading | default: 'Certified, tested, trusted' }}</h2>
+      {% if section.settings.subheading != blank %}<p>{{ section.settings.subheading }}</p>{% endif %}
+    </div>
+    <div class="cert-grid" data-reveal-stagger>
+      {% for block in section.blocks %}
+        <div class="cert-card" {{ block.shopify_attributes }}>
+          <div class="cert-card__icon">{{ block.settings.emoji | default: '✓' }}</div>
+          <h4 class="cert-card__title">{{ block.settings.title }}</h4>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Certifications",
+  "max_blocks": 8,
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Quality assurance"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Backed by globally recognised certifications that reflect our dedication to safe, ethical, baby-friendly skincare."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "cert",
+      "name": "Certification",
+      "settings": [
+        {
+          "type": "text",
+          "id": "emoji",
+          "label": "Icon",
+          "default": "✓"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Certifications",
+      "blocks": [
+        {
+          "type": "cert",
+          "settings": {
+            "emoji": "🛡",
+            "title": "Hypoallergenic"
+          }
+        },
+        {
+          "type": "cert",
+          "settings": {
+            "emoji": "🩺",
+            "title": "Dermatologically Tested"
+          }
+        },
+        {
+          "type": "cert",
+          "settings": {
+            "emoji": "🇺🇸",
+            "title": "FDA Approved"
+          }
+        },
+        {
+          "type": "cert",
+          "settings": {
+            "emoji": "⚖",
+            "title": "pH Balanced"
+          }
+        },
+        {
+          "type": "cert",
+          "settings": {
+            "emoji": "🐇",
+            "title": "PETA Certified"
+          }
+        },
+        {
+          "type": "cert",
+          "settings": {
+            "emoji": "🌱",
+            "title": "BioCert Organic"
+          }
+        }
+      ]
+    }
+  ],
+  "default": {
+    "blocks": [
+      {
+        "type": "cert",
+        "settings": {
+          "emoji": "🛡",
+          "title": "Hypoallergenic"
+        }
+      },
+      {
+        "type": "cert",
+        "settings": {
+          "emoji": "🩺",
+          "title": "Dermatologically Tested"
+        }
+      },
+      {
+        "type": "cert",
+        "settings": {
+          "emoji": "🇺🇸",
+          "title": "FDA Approved"
+        }
+      },
+      {
+        "type": "cert",
+        "settings": {
+          "emoji": "⚖",
+          "title": "pH Balanced"
+        }
+      },
+      {
+        "type": "cert",
+        "settings": {
+          "emoji": "🐇",
+          "title": "PETA Certified"
+        }
+      },
+      {
+        "type": "cert",
+        "settings": {
+          "emoji": "🌱",
+          "title": "BioCert Organic"
+        }
+      }
+    ]
+  }
+}
+{% endschema %}

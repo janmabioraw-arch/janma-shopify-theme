@@ -1,0 +1,54 @@
+<div class="page-header">
+  <div class="container">
+    <p class="breadcrumbs"><a href="{{ routes.root_url }}">Home</a> / <span>{{ collection.title }}</span></p>
+    <h1>{{ collection.title }}</h1>
+    {% if collection.description != blank %}
+      <p style="max-width: 620px; margin: 0 auto;">{{ collection.description }}</p>
+    {% endif %}
+  </div>
+</div>
+
+<section class="container">
+  <div class="collection-toolbar">
+    <span>{{ collection.products_count }} product{% if collection.products_count != 1 %}s{% endif %}</span>
+    <form>
+      <label for="SortBy" style="font-size:0.85rem; margin-right:6px;">Sort by</label>
+      <select id="SortBy" name="sort_by" onchange="this.form.submit()">
+        {% assign sort_options = 'manual,best-selling,title-ascending,price-ascending,price-descending,created-descending' | split: ',' %}
+        {% assign sort_labels = 'Featured,Best selling,A-Z,Price: low to high,Price: high to low,Newest' | split: ',' %}
+        {% for option in sort_options %}
+          <option value="{{ option }}" {% if collection.sort_by == option or collection.default_sort_by == option %}selected{% endif %}>{{ sort_labels[forloop.index0] }}</option>
+        {% endfor %}
+      </select>
+    </form>
+  </div>
+
+  {% paginate collection.products by 24 %}
+  {% if collection.products.size > 0 %}
+    <div class="product-grid">
+      {%- for product in collection.products -%}
+        {% render 'product-card', product: product %}
+      {%- endfor -%}
+    </div>
+    {% if paginate.pages > 1 %}
+      <nav class="text-center mt-6" style="display:flex; gap:10px; justify-content:center;">
+        {% if paginate.previous %}<a class="btn btn--ghost btn--sm" href="{{ paginate.previous.url }}">← Previous</a>{% endif %}
+        {% if paginate.next %}<a class="btn btn--ghost btn--sm" href="{{ paginate.next.url }}">Next →</a>{% endif %}
+      </nav>
+    {% endif %}
+  {% else %}
+    <div class="empty-state">
+      <h2>No products yet</h2>
+      <p>We're crafting something gentle. Check back soon.</p>
+      <a href="{{ routes.collections_url }}" class="btn btn--outline">Browse all collections</a>
+    </div>
+  {% endif %}
+  {% endpaginate %}
+</section>
+
+{% schema %}
+{
+  "name": "Collection",
+  "settings": []
+}
+{% endschema %}

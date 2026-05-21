@@ -1,0 +1,23 @@
+{
+  "type": "footer",
+  "name": "Footer",
+  "sections": {
+    "footer": {
+      "type": "footer",
+      "settings": {
+        "tagline": "Born from a mother's instinct and a scientist's precision. Pure, plant-derived skincare for newborns, babies and juniors.",
+        "instagram_url": "https://www.instagram.com/janmacare",
+        "facebook_url": "https://www.facebook.com/janmacare",
+        "youtube_url": "https://www.youtube.com/@JanmaCare",
+        "linkedin_url": "https://in.linkedin.com/company/bon-natural-organic-private-limited"
+      },
+      "blocks": {
+        "shop": { "type": "menu", "settings": { "heading": "Shop" } },
+        "about": { "type": "menu", "settings": { "heading": "About" } },
+        "newsletter": { "type": "newsletter", "settings": { "heading": "Stay in our nest", "text": "Get gentle guides for first-time parents, plus 10% off your first order." } }
+      },
+      "block_order": ["shop","about","newsletter"]
+    }
+  },
+  "order": ["footer"]
+}

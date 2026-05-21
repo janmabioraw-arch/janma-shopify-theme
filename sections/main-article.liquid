@@ -1,0 +1,50 @@
+<article class="container" style="max-width:760px; padding: clamp(40px,5vw,80px) 20px;">
+  <p class="breadcrumbs" style="font-size:0.85rem;color:var(--color-text-muted);"><a href="{{ blog.url }}">{{ blog.title }}</a> / <span>{{ article.title }}</span></p>
+  <h1 style="margin-top:8px;">{{ article.title }}</h1>
+  <p style="color:var(--color-sage-deep); font-size:0.9rem; letter-spacing:0.08em; text-transform:uppercase;">
+    {{ article.published_at | date: '%B %d, %Y' }}{% if article.author %} · by {{ article.author }}{% endif %}
+  </p>
+
+  {% if article.image %}
+    <div style="margin: 28px 0; border-radius: var(--radius-lg); overflow:hidden;">
+      {{ article.image | image_url: width: 1400 | image_tag: alt: article.title, loading: 'eager' }}
+    </div>
+  {% endif %}
+
+  <div class="rich-text">{{ article.content }}</div>
+
+  {% if article.tags.size > 0 %}
+    <div style="margin-top:32px; display:flex; gap:8px; flex-wrap:wrap;">
+      {% for tag in article.tags %}
+        <a href="{{ blog.url }}/tagged/{{ tag | handle }}" class="btn btn--ghost btn--sm">#{{ tag }}</a>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  {% if blog.comments_enabled? %}
+    <section style="margin-top:60px;">
+      <h2>Comments</h2>
+      {% if article.comments_count > 0 %}
+        {% for comment in article.comments %}
+          <div style="padding:18px 0; border-bottom:1px solid var(--color-border);">
+            <strong>{{ comment.author }}</strong>
+            <p>{{ comment.content }}</p>
+          </div>
+        {% endfor %}
+      {% endif %}
+
+      {% form 'new_comment', article %}
+        <div style="display:grid; gap:10px; margin-top:18px;">
+          <input type="text" name="comment[author]" placeholder="Name" required style="padding:12px 16px; border:1px solid var(--color-border); border-radius:var(--radius-pill);">
+          <input type="email" name="comment[email]" placeholder="Email" required style="padding:12px 16px; border:1px solid var(--color-border); border-radius:var(--radius-pill);">
+          <textarea name="comment[body]" placeholder="Your thoughts…" required rows="5" style="padding:14px 16px; border:1px solid var(--color-border); border-radius:var(--radius-md);"></textarea>
+          <button type="submit" class="btn btn--primary" style="justify-self:start;">Post comment</button>
+        </div>
+      {% endform %}
+    </section>
+  {% endif %}
+</article>
+
+{% schema %}
+{ "name": "Article", "settings": [] }
+{% endschema %}

@@ -1,0 +1,139 @@
+<section class="section">
+  <div class="container">
+    <div class="section-heading" data-reveal>
+      {% if section.settings.eyebrow != blank %}<span class="eyebrow">{{ section.settings.eyebrow }}</span>{% endif %}
+      <h2>{{ section.settings.heading | default: 'Shop by ritual' }}</h2>
+      {% if section.settings.subheading != blank %}<p>{{ section.settings.subheading }}</p>{% endif %}
+    </div>
+
+    <div class="category-grid" data-reveal-stagger>
+      {% for block in section.blocks %}
+        <a href="{{ block.settings.link | default: '#' }}" class="category-tile" data-reveal {{ block.shopify_attributes }}>
+          {% if block.settings.image != blank %}
+            {{ block.settings.image | image_url: width: 800 | image_tag: alt: block.settings.title }}
+          {% else %}
+            <div style="position:absolute; inset:0; background: linear-gradient(135deg, {{ block.settings.color | default: '#F4DCD0' }}, var(--color-surface-warm));"></div>
+          {% endif %}
+          <div class="category-tile__content">
+            <h3 class="category-tile__title">{{ block.settings.title }}</h3>
+            <span class="category-tile__cta">Discover</span>
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Category tiles",
+  "max_blocks": 4,
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Collections"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Shop by ritual"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tile",
+      "name": "Tile",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "color",
+          "id": "color",
+          "label": "Fallback color",
+          "default": "#F4DCD0"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Category tiles",
+      "blocks": [
+        {
+          "type": "tile",
+          "settings": {
+            "title": "Baby Care",
+            "link": "/collections/baby-care",
+            "color": "#F4DCD0"
+          }
+        },
+        {
+          "type": "tile",
+          "settings": {
+            "title": "Hair Care",
+            "link": "/collections/hair-care",
+            "color": "#F0E6D6"
+          }
+        },
+        {
+          "type": "tile",
+          "settings": {
+            "title": "Moisturising & Protection",
+            "link": "/collections/moisturising-protection",
+            "color": "#E8DFD3"
+          }
+        }
+      ]
+    }
+  ],
+  "default": {
+    "blocks": [
+      {
+        "type": "tile",
+        "settings": {
+          "title": "Baby Care",
+          "link": "/collections/baby-care",
+          "color": "#F4DCD0"
+        }
+      },
+      {
+        "type": "tile",
+        "settings": {
+          "title": "Hair Care",
+          "link": "/collections/hair-care",
+          "color": "#F0E6D6"
+        }
+      },
+      {
+        "type": "tile",
+        "settings": {
+          "title": "Moisturising & Protection",
+          "link": "/collections/moisturising-protection",
+          "color": "#E8DFD3"
+        }
+      }
+    ]
+  }
+}
+{% endschema %}

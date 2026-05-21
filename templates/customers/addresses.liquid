@@ -1,0 +1,19 @@
+<div class="page-header">
+  <div class="container">
+    <p class="breadcrumbs"><a href="{{ routes.account_url }}">Account</a> / <span>Addresses</span></p>
+    <h1>Addresses</h1>
+  </div>
+</div>
+
+<section class="container section">
+  {% paginate customer.addresses by 10 %}
+    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:18px;">
+      {% for address in customer.addresses %}
+        <div style="padding:22px; background:var(--color-surface); border:1px solid var(--color-border); border-radius:var(--radius-md);">
+          {% if address == customer.default_address %}<p style="margin:0 0 8px; font-size:0.75rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--color-sage-deep);">Default</p>{% endif %}
+          <p style="font-size:0.92rem;">{{ address | format_address }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  {% endpaginate %}
+</section>

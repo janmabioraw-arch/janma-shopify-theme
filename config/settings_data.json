@@ -1,0 +1,19 @@
+{
+  "current": {
+    "color_background": "#FBF7F2",
+    "color_text": "#2B2118",
+    "color_accent": "#C97B5C",
+    "color_sage": "#8FA68E",
+    "color_gold": "#C9A961",
+    "page_width": 1240
+  },
+  "presets": {
+    "Janma Default": {
+      "color_background": "#FBF7F2",
+      "color_text": "#2B2118",
+      "color_accent": "#C97B5C",
+      "color_sage": "#8FA68E",
+      "color_gold": "#C9A961"
+    }
+  }
+}

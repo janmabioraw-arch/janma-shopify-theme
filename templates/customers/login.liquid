@@ -1,0 +1,45 @@
+<div class="page-header">
+  <div class="container">
+    <h1>Sign in</h1>
+    <p>Welcome back to Janma.</p>
+  </div>
+</div>
+
+<section class="container section" style="max-width:460px;">
+  {% form 'customer_login' %}
+    {% if form.errors %}
+      <div style="background:var(--color-blush); padding:14px 18px; border-radius:var(--radius-md); margin-bottom:20px;">
+        {{ form.errors | default_errors }}
+      </div>
+    {% endif %}
+    <div style="display:grid; gap:14px;">
+      <label>
+        <span style="display:block; font-weight:600; margin-bottom:6px; font-size:0.9rem;">Email</span>
+        <input type="email" name="customer[email]" required style="width:100%; padding:14px 18px; border:1px solid var(--color-border); border-radius:var(--radius-pill); font:inherit;">
+      </label>
+      <label>
+        <span style="display:block; font-weight:600; margin-bottom:6px; font-size:0.9rem;">Password</span>
+        <input type="password" name="customer[password]" required style="width:100%; padding:14px 18px; border:1px solid var(--color-border); border-radius:var(--radius-pill); font:inherit;">
+      </label>
+      <button type="submit" class="btn btn--primary btn--full">Sign in</button>
+      <div style="text-align:center; font-size:0.9rem;">
+        <a href="#recover" onclick="document.getElementById('recover').style.display='block';return false;">Forgot password?</a>
+        <span> · </span>
+        <a href="{{ routes.account_register_url }}">Create account</a>
+      </div>
+    </div>
+  {% endform %}
+
+  <div id="recover" style="display:none; margin-top:32px; padding-top:32px; border-top:1px solid var(--color-border);">
+    <h3>Reset password</h3>
+    {% form 'recover_customer_password' %}
+      {% if form.posted_successfully? %}
+        <p style="color:var(--color-sage-deep);">We've sent you an email with a reset link.</p>
+      {% endif %}
+      <div style="display:grid; gap:12px; margin-top:12px;">
+        <input type="email" name="email" placeholder="you@example.com" required style="padding:14px 18px; border:1px solid var(--color-border); border-radius:var(--radius-pill); font:inherit;">
+        <button type="submit" class="btn btn--outline">Send reset link</button>
+      </div>
+    {% endform %}
+  </div>
+</section>

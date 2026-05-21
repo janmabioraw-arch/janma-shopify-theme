@@ -1,0 +1,75 @@
+<section class="hero">
+  <div class="hero__blobs" aria-hidden="true">
+    <div class="hero__blob hero__blob--1"></div>
+    <div class="hero__blob hero__blob--2"></div>
+    <div class="hero__blob hero__blob--3"></div>
+  </div>
+  <div class="container hero__inner">
+    <div class="hero__content" data-reveal>
+      {% if section.settings.eyebrow != blank %}
+        <span class="eyebrow">{{ section.settings.eyebrow }}</span>
+      {% endif %}
+      <h1 class="hero__title">{{ section.settings.heading | default: '<p>Born Pure.<br><em>Made with Love.</em></p>' }}</h1>
+      <p class="hero__subtitle">{{ section.settings.subtitle | default: 'Plant-derived, dermatologist-approved baby and junior skincare -- guided by Ayurveda, supported by science, gentle enough for the very first day.' }}</p>
+      <div class="hero__ctas">
+        {% if section.settings.primary_label != blank %}
+          <a href="{{ section.settings.primary_link | default: '/collections/all' }}" class="btn btn--primary magnetic">{{ section.settings.primary_label }}</a>
+        {% endif %}
+        {% if section.settings.secondary_label != blank %}
+          <a href="{{ section.settings.secondary_link | default: '/pages/about-us' }}" class="btn btn--outline">{{ section.settings.secondary_label }}</a>
+        {% endif %}
+        <span class="hero__scroll-cue"><span class="dot"></span>Scroll to explore</span>
+      </div>
+    </div>
+    <div class="hero__image" data-reveal>
+      {% if section.settings.image != blank %}
+        {{ section.settings.image | image_url: width: 1200 | image_tag: alt: 'Janma baby skincare', loading: 'eager' }}
+      {% else %}
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Janma botanical illustration">
+          <defs>
+            <linearGradient id="hg" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#F4DCD0"/>
+              <stop offset="1" stop-color="#F0E6D6"/>
+            </linearGradient>
+            <radialGradient id="rg" cx="0.5" cy="0.4" r="0.6">
+              <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.9"/>
+              <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <rect width="800" height="1000" fill="url(#hg)"/>
+          <circle cx="400" cy="380" r="280" fill="url(#rg)"/>
+          <ellipse cx="400" cy="780" rx="340" ry="160" fill="#8FA68E" opacity="0.22"/>
+          <path d="M260 220 Q400 60 540 220 T720 380" stroke="#C97B5C" stroke-width="3" fill="none" opacity="0.55"/>
+          <path d="M130 600 Q260 510 360 600 T620 640" stroke="#6B8569" stroke-width="3" fill="none" opacity="0.42"/>
+          <path d="M180 760 Q280 700 360 760 T560 780" stroke="#C9A961" stroke-width="2" fill="none" opacity="0.5"/>
+          <circle cx="220" cy="180" r="6" fill="#C97B5C" opacity="0.7"/>
+          <circle cx="580" cy="160" r="4" fill="#6B8569" opacity="0.7"/>
+          <circle cx="640" cy="540" r="5" fill="#C9A961" opacity="0.6"/>
+          <text x="400" y="540" text-anchor="middle" font-family="Fraunces, serif" font-size="84" fill="#2B2118" font-style="italic">Janma</text>
+        </svg>
+      {% endif %}
+      <div class="hero__badges">
+        <span class="hero__badge">Toxin-free</span>
+        <span class="hero__badge">Dermatologist Tested</span>
+        <span class="hero__badge">Made in India</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Baby & Junior Skincare" },
+    { "type": "richtext", "id": "heading", "label": "Heading", "default": "<p>Born Pure.<br><em>Made with Love.</em></p>" },
+    { "type": "textarea", "id": "subtitle", "label": "Subtitle" },
+    { "type": "image_picker", "id": "image", "label": "Hero image" },
+    { "type": "text", "id": "primary_label", "label": "Primary button", "default": "Shop the range" },
+    { "type": "url",  "id": "primary_link",  "label": "Primary link" },
+    { "type": "text", "id": "secondary_label", "label": "Secondary button", "default": "Our Ayurveda story" },
+    { "type": "url",  "id": "secondary_link",  "label": "Secondary link" }
+  ],
+  "presets": [{ "name": "Hero" }]
+}
+{% endschema %}

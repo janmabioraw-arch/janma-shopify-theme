@@ -1,0 +1,37 @@
+<div class="page-header">
+  <div class="container">
+    <p class="breadcrumbs"><a href="{{ routes.root_url }}">Home</a> / <span>Collections</span></p>
+    <h1>Collections</h1>
+    <p style="max-width:540px; margin: 0 auto;">Discover the full Janma family -- gentle rituals for every milestone.</p>
+  </div>
+</div>
+
+<section class="section">
+  <div class="container">
+    {% if collections.size > 0 %}
+      <div class="category-grid">
+        {% for collection in collections %}
+          <a href="{{ collection.url }}" class="category-tile">
+            {% if collection.image %}
+              {{ collection.image | image_url: width: 800 | image_tag: alt: collection.title }}
+            {% else %}
+              <div style="position:absolute; inset:0; background: linear-gradient(135deg, #F4DCD0, #F0E6D6);"></div>
+            {% endif %}
+            <div class="category-tile__content">
+              <h3 class="category-tile__title">{{ collection.title }}</h3>
+              <span class="category-tile__cta">Shop</span>
+            </div>
+          </a>
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="empty-state">
+        <p>No collections yet -- check back soon.</p>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{ "name": "Collections list", "settings": [] }
+{% endschema %}

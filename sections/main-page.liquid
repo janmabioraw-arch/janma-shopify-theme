@@ -1,0 +1,19 @@
+<div class="page-header">
+  <div class="container">
+    <p class="breadcrumbs"><a href="{{ routes.root_url }}">Home</a> / <span>{{ page.title }}</span></p>
+    <h1>{{ page.title }}</h1>
+  </div>
+</div>
+
+<section class="section">
+  <div class="container rich-text">
+    {{ page.content }}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Page",
+  "settings": []
+}
+{% endschema %}

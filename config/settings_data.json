@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "current": {
     "color_background": "#FBF7F2",
@@ -5,7 +14,41 @@
     "color_accent": "#C97B5C",
     "color_sage": "#8FA68E",
     "color_gold": "#C9A961",
-    "page_width": 1240
+    "page_width": 1240,
+    "sections": {
+      "hero": {
+        "type": "hero",
+        "settings": {
+          "eyebrow": "Baby & Junior Skincare",
+          "heading": "<p>Born Pure.<br/><em>Made with Love.</em></p>",
+          "subtitle": "",
+          "primary_label": "Shop the range",
+          "primary_link": "",
+          "secondary_label": "Our Ayurveda story",
+          "secondary_link": ""
+        }
+      },
+      "featured-collection": {
+        "type": "featured-collection",
+        "settings": {
+          "eyebrow": "Bestsellers",
+          "heading": "Bestselling rituals",
+          "subheading": "From first baths to bedtime cuddles -- clinically gentle formulas trusted by Indian paediatricians.",
+          "collection": "all-products",
+          "products_to_show": 6,
+          "show_view_all": true
+        }
+      },
+      "newsletter": {
+        "type": "newsletter",
+        "settings": {
+          "eyebrow": "Stay close",
+          "heading": "",
+          "subheading": ""
+        }
+      }
+    },
+    "content_for_index": []
   },
   "presets": {
     "Janma Default": {
